@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\asp_net_core\\StudentRegistrationSystem\\StudentRegistrationAPI\\StudentRegistration\\StudentRegistration.csproj": {}
+    "E:\\Practical_Test\\StudentRegistrationSystem\\StudentRegistrationAPI\\StudentRegistration\\StudentRegistration.csproj": {}
   },
   "projects": {
-    "D:\\asp_net_core\\StudentRegistrationSystem\\StudentRegistrationAPI\\StudentRegistration\\StudentRegistration.csproj": {
+    "E:\\Practical_Test\\StudentRegistrationSystem\\StudentRegistrationAPI\\StudentRegistration\\StudentRegistration.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\asp_net_core\\StudentRegistrationSystem\\StudentRegistrationAPI\\StudentRegistration\\StudentRegistration.csproj",
+        "projectUniqueName": "E:\\Practical_Test\\StudentRegistrationSystem\\StudentRegistrationAPI\\StudentRegistration\\StudentRegistration.csproj",
         "projectName": "StudentRegistration",
-        "projectPath": "D:\\asp_net_core\\StudentRegistrationSystem\\StudentRegistrationAPI\\StudentRegistration\\StudentRegistration.csproj",
-        "packagesPath": "C:\\Users\\Mayoorann\\.nuget\\packages\\",
-        "outputPath": "D:\\asp_net_core\\StudentRegistrationSystem\\StudentRegistrationAPI\\StudentRegistration\\obj\\",
+        "projectPath": "E:\\Practical_Test\\StudentRegistrationSystem\\StudentRegistrationAPI\\StudentRegistration\\StudentRegistration.csproj",
+        "packagesPath": "C:\\Users\\Acer\\.nuget\\packages\\",
+        "outputPath": "E:\\Practical_Test\\StudentRegistrationSystem\\StudentRegistrationAPI\\StudentRegistration\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Mayoorann\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Acer\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -57,6 +60,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[3.1.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[3.0.0, )"
             }
           },
           "imports": [
@@ -77,7 +84,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\PROGRAM FILES\\DOTNET\\sdk\\5.0.407\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     }
