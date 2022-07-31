@@ -14,7 +14,7 @@ namespace StudentRegistration.Repository
         {
             this._context = context;
         }
-        public TeacherClassroom CreateSubject(TeacherClassroom subject)
+        public TeacherClassroom CreateTClassroom(TeacherClassroom subject)
         {
             try
             {
@@ -29,7 +29,7 @@ namespace StudentRegistration.Repository
             }
         }
 
-        public TeacherClassroom DeleteSubject(int id)
+        public TeacherClassroom DeleteTClassroom(int id)
         {
             try
             {
@@ -49,17 +49,18 @@ namespace StudentRegistration.Repository
             }
         }
 
-        public IEnumerable<TeacherClassroom> GetAllSubjects()
+        public IEnumerable<TeacherClassroom> GetAllTClassroom()
         {
             return _context.TeacherClassrooms;
         }
 
-        public TeacherClassroom GetSubjectById(int id)
+
+        public TeacherClassroom GetTClassroomById(int id)
         {
             return _context.TeacherClassrooms.Find(id);
         }
 
-        public TeacherClassroom UpdateSubject(TeacherClassroom subject, int id)
+        public TeacherClassroom UpdateTClassroom(TeacherClassroom subject, int id)
         {
             try
             {

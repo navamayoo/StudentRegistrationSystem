@@ -6,10 +6,10 @@ namespace StudentRegistration.Interface
     public interface ITeacherSubjectRepository
     {
 
-        IEnumerable<TeacherSubject> GetAllSubjects();
-        TeacherSubject GetSubjectById(int id);
-        TeacherSubject CreateSubject(TeacherSubject subject);
-        TeacherSubject UpdateSubject(TeacherSubject subject, int id);
-        TeacherSubject DeleteSubject(int id);
+        IEnumerable<TeacherSubject> GetAllTSubjects();
+        TeacherSubject GetTSubjectById(int id);
+        TeacherSubject CreateTSubject(TeacherSubject subject);
+        TeacherSubject UpdateTSubject(TeacherSubject subject, int id);
+        TeacherSubject DeleteTSubject(int id);
     }
 }
