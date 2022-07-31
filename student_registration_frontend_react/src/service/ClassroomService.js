@@ -1,13 +1,13 @@
 import axios from "axios";
 const API_URL = process.env.REACT_APP_API_URL;
 
-class DepartmentService{
+class ClassroomService{
 
-    create = async(department)=>{
+    create = async(classroom)=>{
       await axios({
           method:"Post",
-          url:`${API_URL}Department`,
-          data:department
+          url:`${API_URL}Classroom`,
+          data:classroom
       }).catch((e)=>{
           const {message}= e.response.data;
           if(message.errorInfo) throw message.errorInfo[2];
@@ -19,7 +19,7 @@ class DepartmentService{
         try{
             const response = await axios({
                 method:"GET",
-                url:`${API_URL}Department`
+                url:`${API_URL}Classroom`
             });
             return response.data
         }catch(e){
@@ -31,7 +31,7 @@ class DepartmentService{
         try{
             const response = await axios({
                 method: "GET",
-                url:`${API_URL}Department/${code}`
+                url:`${API_URL}Classroom/${code}`
             });
             return response.data
         }catch(e){
@@ -39,11 +39,11 @@ class DepartmentService{
         };
         
     }
-    update = async(code,department)=>{
+    update = async(code,classroom)=>{
         await axios({
             method:"PUT",
-            url:`${API_URL}Department/${code}`,
-            data:department,
+            url:`${API_URL}Classroom/${code}`,
+            data:classroom,
         }).catch((e)=>{
             const{message} = e.response.data;
             if(message.errorInfo) throw message.errorInfo[2];
@@ -54,7 +54,7 @@ class DepartmentService{
         try{
             const response = await axios({
                 method: "DELETE",
-                url:`${API_URL}Department/${code}`
+                url:`${API_URL}Classroom/${code}`
             });
             return response.data
         }catch(e){
@@ -64,4 +64,4 @@ class DepartmentService{
     }
 }
 
-export default new DepartmentService();
+export default new ClassroomService();

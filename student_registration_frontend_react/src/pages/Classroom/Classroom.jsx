@@ -9,7 +9,7 @@ import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
 import Control from "../../components/controls/Control";
 import Popup from "../../components/controls/Dialog/Popup";
 import { makeStyles } from "@mui/styles";
-import DepartmentService from "../../service/DepartmentService";
+import ClassroomService from "../../service/ClassroomService";
 import DialogBox from "../../components/controls/Dialog/DialogBox";
 const useStyles = makeStyles({
   root: {
@@ -32,7 +32,7 @@ export default function Classroom() {
 
 
   const getDepartment = async () => {
-    await DepartmentService.getAll()
+    await ClassroomService.getAll()
       .then((response) => {
         setRecords(response);
       })
@@ -43,7 +43,7 @@ export default function Classroom() {
 
   const deleteNote = async () => {
    
-    await DepartmentService.delete(selectedCode)
+    await ClassroomService.delete(selectedCode)
       .then((response) => {
         setSelectedCode(null)
         setOpen(false)
@@ -102,16 +102,16 @@ export default function Classroom() {
             {records&&
             records.length > 0
                 ? records.map((record) => (
-                    <TableRow key={record.departmentId} sx={{ "& td": { padding: 0 },"&.MuiTableRow-root:hover":{backgroundColor: '#c8e6c9' } }}>
-                      <TableCell>{record.departmentId}</TableCell>
-                      <TableCell>{record.departmentName}</TableCell>
+                    <TableRow key={record.ClassroomId} sx={{ "& td": { padding: 0 },"&.MuiTableRow-root:hover":{backgroundColor: '#c8e6c9' } }}>
+                      <TableCell>{record.ClassroomId}</TableCell>
+                      <TableCell>{record.ClassroomName}</TableCell>
                       <TableCell>
                         <Control.ActionButton
                           size="small"
                           color="primary"
                           onClick={() => {
                             setOpenPopup(true);
-                            setSelectedCode(record.departmentId);
+                            setSelectedCode(record.ClassroomId);
                             setLoading(false);
                           }}
                         >
@@ -121,7 +121,7 @@ export default function Classroom() {
                         <Control.ActionButton size="small" color="error"
                         onClick={() => {
                             setOpen(true);
-                            setSelectedCode(record.departmentId);
+                            setSelectedCode(record.ClassroomId);
                           }}
                         >
                           <DeleteIcon fontSize="small" />

@@ -3,10 +3,10 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { Grid, Box } from "@mui/material";
 import Control from "../../components/controls/Control";
-import DepartmentService from "../../service/DepartmentService";
+import ClassroomService from "../../service/ClassroomService";
 
 export default function ClassroomForm({
-  departmentId,
+  ClassroomId,
   loading,
   setLoading,
   setFormSubmitted,
@@ -27,8 +27,8 @@ export default function ClassroomForm({
 
   const handelSubmit = async (values) => {
     if (validationSchema) {
-      if (departmentId) {
-        await DepartmentService.update(departmentId, values).then(
+      if (ClassroomId) {
+        await ClassroomService.update(ClassroomId, values).then(
           (response) => {
             console.log("update");
             setPopupClose(false);
@@ -37,7 +37,7 @@ export default function ClassroomForm({
           }
         );
       } else {
-        await DepartmentService.create(values).then((response) => {
+        await ClassroomService.create(values).then((response) => {
           console.log("crete");
           setPopupClose(false);
         });
@@ -47,15 +47,15 @@ export default function ClassroomForm({
   };
 
   useEffect(() => {
-    if (departmentId != null) {
-      getDepartmentByCode(departmentId);
+    if (ClassroomId != null) {
+      getDepartmentByCode(ClassroomId);
     } else {
       setLoading(true);
     }
-  }, [departmentId]);
+  }, [ClassroomId]);
 
-  const getDepartmentByCode = async (departmentId) => {
-    await DepartmentService.getByCode(departmentId)
+  const getDepartmentByCode = async (ClassroomId) => {
+    await ClassroomService.getByCode(ClassroomId)
       .then((response) => {
         setFormValues(response);
         setLoading(true);
