@@ -70,7 +70,7 @@ namespace StudentRegistration.Repository
                 return teacher;
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw new Exception($"Unexpected error in controller when creating category: {ex.Message}");
             }

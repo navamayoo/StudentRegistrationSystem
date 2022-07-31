@@ -12,7 +12,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using StudentRegistration.Interface;
+using SubjectRegistration.Interface;
 using StudentRegistration.Repository;
+using Microsoft.OpenApi.Models;
 
 namespace StudentRegistration
 {
@@ -30,12 +32,21 @@ namespace StudentRegistration
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            //services.AddScoped<IStudentRepository, StudentRepository>();
-            //services.AddScoped<ITeacherRepository, TeacherRepository>();
-            //services.AddScoped<>
+            services.AddScoped<IStudentRepository, StudentRepository>();
+            services.AddScoped<ITeacherRepository, TeacherRepository>();
+            services.AddScoped<IClassroomRepository, ClassroomRepository>();
+            services.AddScoped<ISubjectRepository, SubjectRepository>();
+            services.AddScoped<ITeacherSubjectRepository, TeacherSubjectRepository>();
+            services.AddScoped<ITeacherClassroomRepository, TeacherClassroomRepository>();
 
             services.AddDbContext<AppDbContext>(options =>
            options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
+
+            services.AddSwaggerGen();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "StudentRegistration", Version = "v1" });
+            });
 
         }
 
@@ -47,8 +58,8 @@ namespace StudentRegistration
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                //app.UseSwagger();
-                //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "NewsApi v1"));
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "StudentRegistration v1"));
             }
 
             if (env.IsDevelopment())

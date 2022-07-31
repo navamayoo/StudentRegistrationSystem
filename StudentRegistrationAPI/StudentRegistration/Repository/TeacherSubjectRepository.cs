@@ -56,10 +56,12 @@ namespace StudentRegistration.Repository
             return _context.TeacherSubjects;
         }
 
+
         public TeacherSubject GetTSubjectById(int id)
         {
             return _context.TeacherSubjects.Find(id);
         }
+
 
         public TeacherSubject UpdateTSubject(TeacherSubject subject, int id)
         {
