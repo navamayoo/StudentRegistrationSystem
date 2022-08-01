@@ -19,13 +19,13 @@ namespace StudentRegistration.Models
         public string ContactNo { get; set; }
         [Required]
         [EmailAddress]
-        public string EmailAddress { get; set; }
+        public string Email { get; set; }
         [Required]
-        public string Dateofbirth { get; set; }
+        public string DateOfBirth { get; set; }
 
         //Navigations Properties
         [Required]
-        public int? ClassroomId { get; set; }
+        public int? ClassId { get; set; }
         public Classroom Classroom { get; set; }
 
 

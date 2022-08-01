@@ -2,7 +2,7 @@
 
 namespace StudentRegistration.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,7 +12,7 @@ namespace StudentRegistration.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ClassroomName = table.Column<string>(nullable: true)
+                    RoomName = table.Column<string>(maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -25,7 +25,7 @@ namespace StudentRegistration.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    SubjectName = table.Column<string>(nullable: true)
+                    SubjectName = table.Column<string>(maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -38,10 +38,10 @@ namespace StudentRegistration.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true),
-                    ContactNo = table.Column<string>(nullable: true),
-                    EmailAddress = table.Column<string>(nullable: true)
+                    FirstName = table.Column<string>(maxLength: 100, nullable: false),
+                    LastName = table.Column<string>(maxLength: 100, nullable: true),
+                    ContactNo = table.Column<string>(maxLength: 100, nullable: false),
+                    EmailAddress = table.Column<string>(maxLength: 200, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -54,13 +54,14 @@ namespace StudentRegistration.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true),
-                    ContactPerson = table.Column<string>(nullable: true),
-                    ContactNo = table.Column<string>(nullable: true),
-                    EmailAddress = table.Column<string>(nullable: true),
-                    Dateofbirth = table.Column<string>(nullable: true),
-                    ClassroomId = table.Column<int>(nullable: false)
+                    FirstName = table.Column<string>(maxLength: 100, nullable: false),
+                    LastName = table.Column<string>(maxLength: 100, nullable: false),
+                    ContactPerson = table.Column<string>(maxLength: 200, nullable: false),
+                    ContactNo = table.Column<string>(nullable: false),
+                    EmailAddress = table.Column<string>(nullable: false),
+                    DateOfBirth = table.Column<string>(nullable: false),
+                    ClassId = table.Column<int>(nullable: false),
+                    ClassroomId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -70,29 +71,29 @@ namespace StudentRegistration.Migrations
                         column: x => x.ClassroomId,
                         principalTable: "Classrooms",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Teacher_Classrooms",
+                name: "TeacherClassrooms",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TeacherId = table.Column<int>(nullable: false),
                     ClassroomId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Teacher_Classrooms", x => x.ID);
+                    table.PrimaryKey("PK_TeacherClassrooms", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Teacher_Classrooms_Classrooms_ClassroomId",
+                        name: "FK_TeacherClassrooms_Classrooms_ClassroomId",
                         column: x => x.ClassroomId,
                         principalTable: "Classrooms",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Teacher_Classrooms_Teachers_TeacherId",
+                        name: "FK_TeacherClassrooms_Teachers_TeacherId",
                         column: x => x.TeacherId,
                         principalTable: "Teachers",
                         principalColumn: "Id",
@@ -100,25 +101,25 @@ namespace StudentRegistration.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Teacher_Subjects",
+                name: "TeacherSubjects",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TeacherId = table.Column<int>(nullable: false),
                     SubjectId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Teacher_Subjects", x => x.ID);
+                    table.PrimaryKey("PK_TeacherSubjects", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Teacher_Subjects_Subjects_SubjectId",
+                        name: "FK_TeacherSubjects_Subjects_SubjectId",
                         column: x => x.SubjectId,
                         principalTable: "Subjects",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Teacher_Subjects_Teachers_TeacherId",
+                        name: "FK_TeacherSubjects_Teachers_TeacherId",
                         column: x => x.TeacherId,
                         principalTable: "Teachers",
                         principalColumn: "Id",
@@ -131,23 +132,23 @@ namespace StudentRegistration.Migrations
                 column: "ClassroomId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Teacher_Classrooms_ClassroomId",
-                table: "Teacher_Classrooms",
+                name: "IX_TeacherClassrooms_ClassroomId",
+                table: "TeacherClassrooms",
                 column: "ClassroomId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Teacher_Classrooms_TeacherId",
-                table: "Teacher_Classrooms",
+                name: "IX_TeacherClassrooms_TeacherId",
+                table: "TeacherClassrooms",
                 column: "TeacherId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Teacher_Subjects_SubjectId",
-                table: "Teacher_Subjects",
+                name: "IX_TeacherSubjects_SubjectId",
+                table: "TeacherSubjects",
                 column: "SubjectId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Teacher_Subjects_TeacherId",
-                table: "Teacher_Subjects",
+                name: "IX_TeacherSubjects_TeacherId",
+                table: "TeacherSubjects",
                 column: "TeacherId");
         }
 
@@ -157,10 +158,10 @@ namespace StudentRegistration.Migrations
                 name: "Students");
 
             migrationBuilder.DropTable(
-                name: "Teacher_Classrooms");
+                name: "TeacherClassrooms");
 
             migrationBuilder.DropTable(
-                name: "Teacher_Subjects");
+                name: "TeacherSubjects");
 
             migrationBuilder.DropTable(
                 name: "Classrooms");

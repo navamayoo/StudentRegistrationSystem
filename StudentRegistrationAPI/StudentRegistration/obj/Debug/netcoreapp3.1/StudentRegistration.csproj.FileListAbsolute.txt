@@ -15,6 +15,7 @@ E:\Practical_Test\StudentRegistrationSystem\StudentRegistrationAPI\StudentRegist
 E:\Practical_Test\StudentRegistrationSystem\StudentRegistrationAPI\StudentRegistration\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Relational.dll
 E:\Practical_Test\StudentRegistrationSystem\StudentRegistrationAPI\StudentRegistration\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.SqlServer.dll
 E:\Practical_Test\StudentRegistrationSystem\StudentRegistrationAPI\StudentRegistration\bin\Debug\netcoreapp3.1\Microsoft.Identity.Client.dll
+E:\Practical_Test\StudentRegistrationSystem\StudentRegistrationAPI\StudentRegistration\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
 E:\Practical_Test\StudentRegistrationSystem\StudentRegistrationAPI\StudentRegistration\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
 E:\Practical_Test\StudentRegistrationSystem\StudentRegistrationAPI\StudentRegistration\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
 E:\Practical_Test\StudentRegistrationSystem\StudentRegistrationAPI\StudentRegistration\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -42,4 +43,3 @@ E:\Practical_Test\StudentRegistrationSystem\StudentRegistrationAPI\StudentRegist
 E:\Practical_Test\StudentRegistrationSystem\StudentRegistrationAPI\StudentRegistration\obj\Debug\netcoreapp3.1\StudentRegistration.dll
 E:\Practical_Test\StudentRegistrationSystem\StudentRegistrationAPI\StudentRegistration\obj\Debug\netcoreapp3.1\StudentRegistration.pdb
 E:\Practical_Test\StudentRegistrationSystem\StudentRegistrationAPI\StudentRegistration\obj\Debug\netcoreapp3.1\StudentRegistration.genruntimeconfig.cache
-E:\Practical_Test\StudentRegistrationSystem\StudentRegistrationAPI\StudentRegistration\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll

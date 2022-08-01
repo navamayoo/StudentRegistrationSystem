@@ -9,7 +9,7 @@ namespace StudentRegistration.Models
         public int Id { get; set; }
         [Required]
         [StringLength(100)]
-        public string ClassroomName { get; set; }
+        public string RoomName { get; set; }
         public List<Student> Students { get; set; }
 
         //Navigations Properties
