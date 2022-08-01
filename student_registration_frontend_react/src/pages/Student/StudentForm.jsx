@@ -3,14 +3,14 @@ import { Formik, Form } from "formik";
 import Control from "../../components/controls/Control";
 import * as Yup from "yup";
 import { Grid, Box, Stack, TextField } from "@mui/material";
-import EmployeeService from "../../service/EmployeeService";
-import DepartmentService from "../../service/ClassroomService";
+import StudentService from "../../service/StudentService";
+import ClassroomService from "../../service/ClassroomService";
 // import { AdapterDateFns } from "@mui/lab/AdapterDateFns";
 import AdapterDateFns from "@mui/lab/modern/AdapterDateFns";
 import { LocalizationProvider, DatePicker } from "@mui/lab";
 
-export default function EmployeeForm({
-  employeeCode,
+export default function StudentForm({
+  id,
   loading,
   setLoading,
   setFormSubmitted,
@@ -20,15 +20,17 @@ export default function EmployeeForm({
   const initialValues = {
     firstName: "",
     lastName: "",
+    contactPerson:"",
+    contactNo:"",
     email: "",
     dateOfBirth: "",
     age: 0,
     salary: "",
-    departmentId: "",
+    roomId: "",
   };
 
   const [form, setForm] = useState(initialValues);
-  const [departments, setDepartments] = useState([]);
+  const [classrooms, setClassrooms] = useState([]);
   const [selectDate, setSelectDate] = useState(null);
   const [age, setAge] = useState(null);
 
@@ -37,7 +39,7 @@ export default function EmployeeForm({
     lastName: Yup.string().required("Required"),
     email: Yup.string().email("Invalid Email Format").required("Required!"),
    // dateOfBirth: Yup.string().required("Required"),
-    departmentId: Yup.string().required("Required"),
+    roomId: Yup.string().required("Required"),
     salary: Yup.number()
       .min(9, "Must be more than 10 characters")
       .required("Required"),
@@ -47,8 +49,8 @@ export default function EmployeeForm({
     console.log("its works");
     try {
     if (validationSchema) {
-    if (employeeCode) {
-      await EmployeeService.update(employeeCode, values).then(
+    if (id) {
+      await StudentService.update(id, values).then(
         (response) => {
           console.log("update");
           setPopupClose(false);
@@ -56,7 +58,7 @@ export default function EmployeeForm({
         }
       );
     } else {
-      await EmployeeService.create(values).then((response) => {
+      await StudentService.create(values).then((response) => {
         console.log("crete");
         setPopupClose(false);
       });
@@ -86,8 +88,8 @@ export default function EmployeeForm({
     setAge(_age);
   };
 
-  const getEmployeeByCode = async (code) => {
-    await EmployeeService.getByCode(code)
+  const getStudentByCode = async (id) => {
+    await StudentService.getByCode(id)
       .then((response) => {
         const dateOfBirth = new Date(response.dateOfBirth)
           .toISOString()
@@ -105,10 +107,10 @@ export default function EmployeeForm({
       });
   };
 
-  const getDepartment = async () => {
-    await DepartmentService.getAll()
+  const getClassroom = async () => {
+    await ClassroomService.getAll()
       .then((response) => {
-        setDepartments(response);
+        setClassrooms(response);
       })
       .catch((e) => {
         console.log(e);
@@ -116,13 +118,13 @@ export default function EmployeeForm({
   };
 
   useEffect(() => {
-    getDepartment();
-    if (employeeCode != null) {
-      getEmployeeByCode(employeeCode);
+    getClassroom();
+    if (id != null) {
+      getStudentByCode(id);
     } else {
       setLoading(true);
     }
-  }, [employeeCode]);
+  }, [id]);
   console.log(form);
 
   const today = new Date().toISOString().split("T")[0];
@@ -200,9 +202,9 @@ export default function EmployeeForm({
                   </Grid>
                   <Grid item xs={6}>
                     <Control.SelectInput
-                      label="Department"
-                      options={departments}
-                      name="departmentId"
+                      label="Classroom"
+                      options={classrooms}
+                      name="roomId"
                     />
                   </Grid>
 

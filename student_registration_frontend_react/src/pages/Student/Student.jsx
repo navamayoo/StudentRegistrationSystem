@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PageHeader from "../../components/layout/PageHeader";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import AddIcon from "@mui/icons-material/Add";
-import EmployeeForm from "./StudentForm";
+import StudentForm from "./StudentForm";
 import Popup from "../../components/controls/Dialog/Popup";
 import Control from "../../components/controls/Control";
 import {
@@ -15,7 +15,7 @@ import {
   TableCell,
   Toolbar,
 } from "@mui/material";
-import EmployeeService from "../../service/EmployeeService";
+import StudentService from "../../service/StudentService";
 import { makeStyles } from "@mui/styles";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -30,7 +30,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Employee() {
+export default function Student() {
   const classes = useStyles();
   const [records, setRecords] = useState({});
   const [openPopup, setOpenPopup] = useState(false);
@@ -41,7 +41,7 @@ export default function Employee() {
   const [open, setOpen] = useState(false);
 
   const getStudents = async () => {
-    await EmployeeService.getAll()
+    await StudentService.getAll()
       .then((response) => {
         setRecords(response);
       })
@@ -51,7 +51,7 @@ export default function Employee() {
   };
 
   const deleteNote = async () => {
-    await EmployeeService.delete(selectedCode)
+    await StudentService.delete(selectedCode)
       .then((response) => {
         setSelectedCode(null);
         setOpen(false);
@@ -103,9 +103,11 @@ export default function Employee() {
                 <TableCell>Code</TableCell>
                 <TableCell>First Name</TableCell>
                 <TableCell>Last Name</TableCell>
+                <TableCell>Contact Person</TableCell>
+                <TableCell>Contact No</TableCell>
                 <TableCell>E-mail</TableCell>
                 <TableCell>Date Of Birth</TableCell>
-                <TableCell>Department</TableCell>
+                <TableCell>Class Room</TableCell>
                 <TableCell>Action</TableCell>
               </TableRow>
             </TableHead>
@@ -113,7 +115,7 @@ export default function Employee() {
               {records.length > 0
                 ? records.map((record) => (
                     <TableRow
-                      key={record.employeeId}
+                      key={record.id}
                       sx={{
                         "& td": { padding: 0, textAlign: "center" },
                         "&.MuiTableRow-root:hover": {
@@ -121,7 +123,7 @@ export default function Employee() {
                         },
                       }}
                     >
-                      <TableCell>{record.employeeId}</TableCell>
+                      <TableCell>{record.id}</TableCell>
                       <TableCell>{record.firstName}</TableCell>
                       <TableCell>{record.lastName}</TableCell>
                       <TableCell>{record.email}</TableCell>
@@ -139,7 +141,7 @@ export default function Employee() {
                           color="primary"
                           onClick={() => {
                             setOpenPopup(true);
-                            setSelectedCode(record.employeeId);
+                            setSelectedCode(record.id);
                             setLoading(false);
                           }}
                         >
@@ -150,7 +152,7 @@ export default function Employee() {
                           color="error"
                           onClick={() => {
                             setOpen(true);
-                            setSelectedCode(record.employeeId);
+                            setSelectedCode(record.id);
                           }}
                         >
                           <DeleteIcon fontSize="small" />
@@ -169,8 +171,8 @@ export default function Employee() {
         setOpenPopup={setOpenPopup}
       >
         {openPopup && (
-          <EmployeeForm
-            employeeCode={selectedCode}
+          <StudentForm
+            id={selectedCode}
             setCode={() => setSelectedCode(null)}
             loading={loading}
             setLoading={(val) => setLoading(val)}

@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from "react";
 import PageHeader from "../../components/layout/PageHeader";
-import ClassroomForm from "./ClassroomForm";
-import BusinessIcon from '@mui/icons-material/Business';
+import SubjectForm from "./SubjectForm";
+import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
@@ -9,7 +9,7 @@ import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
 import Control from "../../components/controls/Control";
 import Popup from "../../components/controls/Dialog/Popup";
 import { makeStyles } from "@mui/styles";
-import ClassroomService from "../../service/ClassroomService";
+import SubjectService from "../../service/SubjectService";
 import DialogBox from "../../components/controls/Dialog/DialogBox";
 const useStyles = makeStyles({
   root: {
@@ -20,7 +20,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Classroom() {
+export default function Subject() {
   const classes = useStyles();
   const [records, setRecords] = useState({});
   const [openPopup, setOpenPopup] = useState(false);
@@ -32,7 +32,7 @@ export default function Classroom() {
 
 
   const getDepartment = async () => {
-    await ClassroomService.getAll()
+    await SubjectService.getAll()
       .then((response) => {
         setRecords(response);
       })
@@ -43,7 +43,7 @@ export default function Classroom() {
 
   const deleteNote = async () => {
    
-    await ClassroomService.delete(selectedCode)
+    await SubjectService.delete(selectedCode)
       .then((response) => {
         setSelectedCode(null)
         setOpen(false)
@@ -69,8 +69,8 @@ export default function Classroom() {
     <>
   
   <PageHeader
-        title="Class Room"
-        icon={<BusinessIcon fontSize="large" />}
+        title="Subject"
+        icon={<AutoStoriesIcon fontSize="large" />}
       />
 
     
@@ -94,7 +94,7 @@ export default function Classroom() {
             <TableHead>
               <TableRow className={classes.root}>
                 {/* <TableCell>Id</TableCell> */}
-                <TableCell>Class Name</TableCell>
+                <TableCell>Subject Name</TableCell>
                 <TableCell>Action</TableCell>
               </TableRow>
             </TableHead>
@@ -104,7 +104,7 @@ export default function Classroom() {
                 ? records.map((record) => (
                     <TableRow key={record.id} sx={{ "& td": { padding: 0 },"&.MuiTableRow-root:hover":{backgroundColor: '#c8e6c9' } }}>
                       {/* <TableCell>{record.id}</TableCell> */}
-                      <TableCell>{record.roomName}</TableCell>
+                      <TableCell>{record.subjectName}</TableCell>
                       <TableCell>
                         <Control.ActionButton
                           size="small"
@@ -140,7 +140,7 @@ export default function Classroom() {
         setOpenPopup={setOpenPopup}
       >
         {openPopup && (
-          <ClassroomForm
+          <SubjectForm
           id={selectedCode}
           setCode={() => setSelectedCode(null)}
             loading={loading}

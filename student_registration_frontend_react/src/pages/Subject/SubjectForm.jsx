@@ -3,9 +3,9 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { Grid, Box } from "@mui/material";
 import Control from "../../components/controls/Control";
-import ClassroomService from "../../service/ClassroomService";
+import SubjectService from "../../service/SubjectService";
 
-export default function ClassroomForm({
+export default function SubjectForm({
   id,
   loading,
   setLoading,
@@ -16,19 +16,19 @@ export default function ClassroomForm({
 
 
   const initValues = {
-    roomName: "",
+    subjectName: "",
   };
 
   const [formValues, setFormValues] = useState(initValues);
 
   const validationSchema = Yup.object({
-    roomName: Yup.string().required("Required"),
+    subjectName: Yup.string().required("Required"),
   });
 
   const handelSubmit = async (values) => {
     if (validationSchema) {
       if (id) {
-        await ClassroomService.update(id, values).then(
+        await SubjectService.update(id, values).then(
           (response) => {
             console.log("update");
             setPopupClose(false);
@@ -37,7 +37,7 @@ export default function ClassroomForm({
           }
         );
       } else {
-        await ClassroomService.create(values).then((response) => {
+        await SubjectService.create(values).then((response) => {
           console.log("crete");
           setPopupClose(false);
         });
@@ -48,14 +48,14 @@ export default function ClassroomForm({
 
   useEffect(() => {
     if (id != null) {
-      getClassByCode(id);
+      getSubjectByCode(id);
     } else {
       setLoading(true);
     }
   }, [id]);
 
-  const getClassByCode = async (id) => {
-    await ClassroomService.getByCode(id)
+  const getSubjectByCode = async (id) => {
+    await SubjectService.getByCode(id)
       .then((response) => {
         setFormValues(response);
         setLoading(true);
@@ -83,8 +83,8 @@ export default function ClassroomForm({
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
                     <Control.Input
-                      name="roomName"
-                      label="Class Name"
+                      name="subjectName"
+                      label="Subject Name"
                     />
                   </Grid>
                 </Grid>

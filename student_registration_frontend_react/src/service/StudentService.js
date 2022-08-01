@@ -2,13 +2,13 @@ import axios from "axios";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
-class EmployeeService{
+class StudentService{
 
-    create = async(employee)=>{
+    create = async(student)=>{
         await axios({
             method:"POST",
-            url: `${API_URL}Employee`,
-            data:employee
+            url: `${API_URL}Student`,
+            data:student
         }).catch((e)=>{
             const {message}= e.response.data;
             if(message.errorInfo) throw message.errorInfo[2];
@@ -20,7 +20,7 @@ class EmployeeService{
         try{
             const response = await axios({
                  method:"get",
-                 url: `${API_URL}Employee`
+                 url: `${API_URL}Student`
             });
             return response.data;
 
@@ -33,7 +33,7 @@ class EmployeeService{
         try{
             const response = await axios({
                 method: "GET",
-                url:`${API_URL}Employee/${code}`
+                url:`${API_URL}Student/${code}`
             });
             return response.data
         }catch(e){
@@ -41,11 +41,11 @@ class EmployeeService{
         };
         
     }
-    update = async(code,employee)=>{
+    update = async(code,student)=>{
         await axios({
             method:"PUT",
-            url:`${API_URL}Employee/${code}`,
-            data:employee,
+            url:`${API_URL}Student/${code}`,
+            data:student,
         }).catch((e)=>{
             const{message} = e.response.data;
             if(message.errorInfo) throw message.errorInfo[2];
@@ -56,7 +56,7 @@ class EmployeeService{
         try{
             const response = await axios({
                 method: "DELETE",
-                url:`${API_URL}Employee/${code}`
+                url:`${API_URL}Student/${code}`
             });
             return response.data
         }catch(e){
@@ -67,4 +67,4 @@ class EmployeeService{
 
 }
 
-export default new EmployeeService();
+export default new StudentService();
