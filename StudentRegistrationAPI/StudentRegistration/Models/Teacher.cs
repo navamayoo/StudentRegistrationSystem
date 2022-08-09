@@ -16,7 +16,7 @@ namespace StudentRegistration.Models
         public string ContactNo { get; set; }
 
         [Required, StringLength(200)]
-        public string EmailAddress { get; set; }
+        public string Email { get; set; }
 
         //Navigations Properties
         public List<TeacherClassroom> TeacherClassrooms { get; set; }
