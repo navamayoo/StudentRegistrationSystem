@@ -3,12 +3,14 @@ import React from "react";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import BusinessIcon from '@mui/icons-material/Business';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
+import SensorOccupiedIcon from '@mui/icons-material/SensorOccupied';
 //import MenuBookIcon from "@mui/icons-material/MenuBook";
 
 //Components
 import Student from "../pages/Student/Student";
 import Classroom from "../pages/Classroom/Classroom";
 import Subject from "../pages/Subject/Subject";
+import Teacher from "../pages/Teacher/Teacher";
 
 //import CourseStudent from "../../pages/Admin/CourseStudents/CourseStudent";
 
@@ -18,6 +20,12 @@ export const routes = [
     component: <Student />,
     label: "Student",
     icon: <PeopleAltIcon />,
+  },
+  {
+    path: "/teacher",
+    component: <Teacher/>,
+    label: "Teacher",
+    icon: <SensorOccupiedIcon />,
   },
   {
     path: "/subject",

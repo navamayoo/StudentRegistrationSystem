@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   root: {
     "& .MuiTableCell-head": {
       color: "black",
-      backgroundColor: "#2a9c3b",
+      backgroundColor: "#00bcd4",
     },
   },
 });
@@ -135,7 +135,7 @@ export default function Subject() {
         </TableContainer>
       </Paper>
       <Popup
-        title="Class Form"
+        title="Subject Form"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

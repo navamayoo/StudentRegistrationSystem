@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PageHeader from "../../components/layout/PageHeader";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import AddIcon from "@mui/icons-material/Add";
-import StudentForm from "./StudentForm";
+import TeacherForm from "./TeacherForm";
 import Popup from "../../components/controls/Dialog/Popup";
 import Control from "../../components/controls/Control";
 import {
@@ -15,7 +15,7 @@ import {
   TableCell,
   Toolbar,
 } from "@mui/material";
-import StudentService from "../../service/StudentService";
+import TeacherService from "../../service/TeacherService";
 import { makeStyles } from "@mui/styles";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -30,7 +30,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Student() {
+export default function Teacher() {
   const classes = useStyles();
   const [records, setRecords] = useState({});
   const [openPopup, setOpenPopup] = useState(false);
@@ -40,8 +40,8 @@ export default function Student() {
   const [selectedCode, setSelectedCode] = useState(null);
   const [open, setOpen] = useState(false);
 
-  const getStudents = async () => {
-    await StudentService.getAll()
+  const getTeachers = async () => {
+    await TeacherService.getAll()
       .then((response) => {
         setRecords(response);
       })
@@ -51,7 +51,7 @@ export default function Student() {
   };
 
   const deleteNote = async () => {
-    await StudentService.delete(selectedCode)
+    await TeacherService.delete(selectedCode)
       .then((response) => {
         setSelectedCode(null);
         setOpen(false);
@@ -68,13 +68,13 @@ export default function Student() {
   };
 
   useEffect(() => {
-    getStudents();
+    getTeachers();
   }, [FormSubmitted]);
 
   return (
     <>
       <PageHeader
-        title="Student"
+        title="Teacher"
         icon={<PersonAddAlt1Icon fontSize="large" />}
       />
 
@@ -166,12 +166,12 @@ export default function Student() {
         </TableContainer>
       </Paper>
       <Popup
-        title="Student Form"
+        title="Teacher Form"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >
         {openPopup && (
-          <StudentForm
+          <TeacherForm
             id={selectedCode}
             setCode={() => setSelectedCode(null)}
             loading={loading}

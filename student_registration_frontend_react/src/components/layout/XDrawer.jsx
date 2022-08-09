@@ -105,7 +105,7 @@ export default function XDrawer(props) {
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
-        <Toolbar sx={{ bgcolor: "#2a9c3b" }} >
+        <Toolbar sx={{ bgcolor: "#2196f3" }} >
           <IconButton
             color="inherit"
             aria-label="open drawer"

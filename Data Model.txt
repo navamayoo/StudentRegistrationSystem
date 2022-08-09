@@ -1,0 +1,45 @@
+Students
+-----------
+● Student ID * (No need to display in the interface)
+● First Name *
+● Last Name *
+● Contact Person *
+● Contact No *
+● Email Address *
+● Date of birth *
+● Age * (Should be auto calculated after entering the DOB)
+● Classroom * (Should be a drop-down box and should load from the classrooms table)
+
+Classrooms 
+------------
+1. Classroom ID * (No need to display in the interface)
+2. Classroom Name *
+
+
+Teachers
+-----------
+1. Teacher ID * (No need to display in the interface)
+2. First Name *
+3. Last Name
+4. Contact No *
+5. Email Address *
+
+Subjects
+---------
+1. Subject ID * (No need to display in the interface)
+2. Subject Name *
+
+
+Allocate subjects 
+---------------------------
+1. AllocateSubject ID * (No need to display in the interface)
+2. Teacher * (Should be a drop-down box and should load from the teachers table)
+3. Subject * (Should be a drop-down box and should load from the subjects table & able to
+add to a table(grid))
+
+Allocate classrooms 
+------------------------
+1. AllocateClassroom ID * (No need to display in the interface)
+2. Teacher * (Should be a drop-down box and should load from the teachers table)
+3. Classroom * (Should be a drop-down box and should load from the classrooms table &
+able to add to a table(grid))
