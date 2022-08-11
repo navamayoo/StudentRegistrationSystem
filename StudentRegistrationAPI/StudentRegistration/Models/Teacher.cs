@@ -19,9 +19,9 @@ namespace StudentRegistration.Models
         public string Email { get; set; }
 
         //Navigations Properties
-        public List<TeacherClassroom> TeacherClassrooms { get; set; }
+        public ICollection<TeacherClass> TeacherClasses { get; set; }
 
-        public List<TeacherSubject> TeacherSubjects { get; set; }
+        public ICollection<TeacherSubject> TeacherSubjects { get; set; }
 
 
     }

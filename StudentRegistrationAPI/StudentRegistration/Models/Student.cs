@@ -26,7 +26,7 @@ namespace StudentRegistration.Models
         //Navigations Properties
         [Required]
         public int? ClassId { get; set; }
-        public Classroom Classroom { get; set; }
+        public Class Class { get; set; }
 
 
     }

@@ -6,19 +6,19 @@ using System;
 
 namespace StudentRegistration.Repository
 {
-    public class TeacherClassroomRepository : ITeacherClassroomRepository
+    public class TeacherClassRepository : ITeacherClassRepository
     {
         private readonly AppDbContext _context;
 
-        public TeacherClassroomRepository(AppDbContext context)
+        public TeacherClassRepository(AppDbContext context)
         {
             this._context = context;
         }
-        public TeacherClassroom CreateTClassroom(TeacherClassroom subject)
+        public TeacherClass CreateTeacherClass(TeacherClass subject)
         {
             try
             {
-                _context.TeacherClassrooms.Add(subject);
+                _context.TeacherClasses.Add(subject);
                 _context.SaveChanges();
                 return subject;
 
@@ -29,14 +29,14 @@ namespace StudentRegistration.Repository
             }
         }
 
-        public TeacherClassroom DeleteTClassroom(int id)
+        public TeacherClass DeleteTeacherClass(int id)
         {
             try
             {
-                TeacherClassroom _teacher = _context.TeacherClassrooms.Find(id);
+                TeacherClass _teacher = _context.TeacherClasses.Find(id);
                 if(_teacher != null )
                 {
-                    _context.TeacherClassrooms.Remove(_teacher);
+                    _context.TeacherClasses.Remove(_teacher);
                     _context.SaveChanges();
                 }
                 return _teacher;
@@ -49,24 +49,24 @@ namespace StudentRegistration.Repository
             }
         }
 
-        public IEnumerable<TeacherClassroom> GetAllTClassroom()
+        public IEnumerable<TeacherClass> GetAllTeacherClass()
         {
-            return _context.TeacherClassrooms;
+            return _context.TeacherClasses;
         }
 
 
-        public TeacherClassroom GetTClassroomById(int id)
+        public TeacherClass GetTeacherClassById(int id)
         {
-            return _context.TeacherClassrooms.Find(id);
+            return _context.TeacherClasses.Find(id);
         }
 
-        public TeacherClassroom UpdateTClassroom(TeacherClassroom subject, int id)
+        public TeacherClass UpdateTeacherClass(TeacherClass subject, int id)
         {
             try
             {
                 if (id == subject.Id)
                 {
-                    var _student = _context.TeacherClassrooms.Attach(subject);
+                    var _student = _context.TeacherClasses.Attach(subject);
                     _student.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                     _context.SaveChanges();
 

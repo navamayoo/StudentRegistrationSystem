@@ -3,16 +3,16 @@ using System.ComponentModel.DataAnnotations;
 
 namespace StudentRegistration.Models
 {
-    public class Classroom
+    public class Class
     {
         [Key]
         public int Id { get; set; }
         [Required]
         [StringLength(100)]
-        public string RoomName { get; set; }
-        public List<Student> Students { get; set; }
+        public string Name { get; set; }
+        public ICollection<Student> Students { get; set; }
 
         //Navigations Properties
-        public List<TeacherClassroom> TeacherClassrooms { get; set; }
+        public ICollection<TeacherClass> TeacherClasses { get; set; }
     }
 }

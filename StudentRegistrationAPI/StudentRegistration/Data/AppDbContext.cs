@@ -12,15 +12,15 @@ namespace StudentRegistration.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<TeacherClassroom>()
+            modelBuilder.Entity<TeacherClass>()
                 .HasOne(t => t.Teacher)
-                .WithMany(tc => tc.TeacherClassrooms)
+                .WithMany(tc => tc.TeacherClasses)
                 .HasForeignKey(t1 => t1.TeacherId);
 
-            modelBuilder.Entity<TeacherClassroom>()
-                 .HasOne(c => c.Classroom)
-                 .WithMany(tc => tc.TeacherClassrooms)
-                 .HasForeignKey(c1 => c1.ClassroomId);
+            modelBuilder.Entity<TeacherClass>()
+                 .HasOne(c => c.Class)
+                 .WithMany(tc => tc.TeacherClasses)
+                 .HasForeignKey(c1 => c1.ClassId);
 
             modelBuilder.Entity<TeacherSubject>()
                 .HasOne(t => t.Teacher)
@@ -36,8 +36,8 @@ namespace StudentRegistration.Data
         public DbSet<Student> Students { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Subject> Subjects { get; set; }
-        public DbSet<Classroom> Classrooms { get; set; }
-        public DbSet<TeacherClassroom> TeacherClassrooms { get; set; }
+        public DbSet<Class> Classes { get; set; }
+        public DbSet<TeacherClass> TeacherClasses { get; set; }
         public DbSet<TeacherSubject> TeacherSubjects { get; set; }
 
     }

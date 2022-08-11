@@ -10,48 +10,48 @@ namespace StudentRegistration.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TeacherClassroomController : ControllerBase
+    public class TeacherClassController : ControllerBase
     {
-        private readonly ITeacherClassroomRepository repository;
+        private readonly ITeacherClassRepository repository;
 
-        public TeacherClassroomController(ITeacherClassroomRepository _repository)
+        public TeacherClassController(ITeacherClassRepository _repository)
         {
             repository = _repository;
         }
 
         // GET: api/<TeacherClassroomController>
         [HttpGet]
-        public IEnumerable<TeacherClassroom> GetAll()
+        public IEnumerable<TeacherClass> GetAll()
         {
-            return repository.GetAllTClassroom().ToList();
+            return repository.GetAllTeacherClass().ToList();
         }
 
         // GET api/<TeacherClassroomController>/5
         [HttpGet("{id}")]
-        public TeacherClassroom GetById(int id)
+        public TeacherClass GetById(int id)
         {
-            return repository.GetTClassroomById(id);
+            return repository.GetTeacherClassById(id);
         }
 
         // POST api/<TeacherClassroomController>
         [HttpPost]
-        public TeacherClassroom Post([FromBody] TeacherClassroom teacherClassroom)
+        public TeacherClass Post([FromBody] TeacherClass teacherClassroom)
         {
-            return repository.CreateTClassroom(teacherClassroom);
+            return repository.CreateTeacherClass(teacherClassroom);
         }
 
         // PUT api/<TeacherClassroomController>/5
         [HttpPut("{id}")]
-        public TeacherClassroom Put(int id, [FromBody] TeacherClassroom teacherClassroom)
+        public TeacherClass Put(int id, [FromBody] TeacherClass teacherClassroom)
         {
-            return repository.UpdateTClassroom(teacherClassroom, id);
+            return repository.UpdateTeacherClass(teacherClassroom, id);
         }
 
         // DELETE api/<TeacherClassroomController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            repository.DeleteTClassroom(id);    
+            repository.DeleteTeacherClass(id);    
         }
     }
 }

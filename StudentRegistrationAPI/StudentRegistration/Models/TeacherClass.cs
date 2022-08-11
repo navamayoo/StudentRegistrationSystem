@@ -2,7 +2,7 @@
 
 namespace StudentRegistration.Models
 {
-    public class TeacherClassroom
+    public class TeacherClass
     {
         [Key]
         public int Id { get; set; }
@@ -11,8 +11,8 @@ namespace StudentRegistration.Models
         public Teacher Teacher { get; set; }
 
         [Required]
-        public int ClassroomId { get; set; }
-        public Classroom Classroom { get; set; }
+        public int ClassId { get; set; }
+        public Class Class { get; set; }
 
 
 

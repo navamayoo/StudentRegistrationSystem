@@ -6,21 +6,22 @@ using System.Collections.Generic;
 
 namespace StudentRegistration.Repository
 {
-    public class ClassroomRepository : IClassroomRepository
+    public class ClassRepository : IClassRepository
     {
         private readonly AppDbContext _context;
 
-        public ClassroomRepository(AppDbContext context)
+        public ClassRepository(AppDbContext context)
         {
             this._context = context;
         }
-        public Classroom CreateClassroom(Classroom classroom)
+        public Class CreateClass(Class Class)
         {
             try
             {
-               _context.Classrooms.Add(classroom);
+                
+               _context.Classes.Add(Class);
                 _context.SaveChanges();
-                return classroom;
+                return Class;
             }
             catch (Exception ex)
             {
@@ -29,19 +30,19 @@ namespace StudentRegistration.Repository
             }
         }
 
-        public Classroom DeleteClassroom(int id)
+        public Class DeleteClass(int id)
         {
             try
             {
-               Classroom classroom = _context.Classrooms.Find(id);
-                if(classroom != null)
+               Class Class = _context.Classes.Find(id);
+                if(Class != null)
                 {
-                    _context.Classrooms.Remove(classroom);
+                    _context.Classes.Remove(Class);
                     _context.SaveChanges();
                    
                 }
 
-                return classroom;
+                return Class;
             }
             catch (Exception ex)
             {
@@ -50,29 +51,29 @@ namespace StudentRegistration.Repository
             }
         }
 
-        public IEnumerable<Classroom> GetAllClassrooms()
+        public IEnumerable<Class> GetAllClasses()
         {
-            return _context.Classrooms; 
+            return _context.Classes; 
         }
 
-        public Classroom GetClassroomById(int id)
+        public Class GetClassById(int id)
         {
-            return _context.Classrooms.Find(id);
+            return _context.Classes.Find(id);
         }
 
  
 
-        public Classroom UpdateClassroom(Classroom classroomChange)
+        public Class UpdateClass(Class ClassChange)
         {
             try
             {
                
-                    var room = _context.Classrooms.Attach(classroomChange);
+                    var room = _context.Classes.Attach(ClassChange);
                     room.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
 
                     _context.SaveChanges();
 
-                    return classroomChange;
+                    return ClassChange;
               
 
             }

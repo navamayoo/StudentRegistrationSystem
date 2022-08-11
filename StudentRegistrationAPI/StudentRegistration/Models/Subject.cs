@@ -9,10 +9,10 @@ namespace StudentRegistration.Models
         public int Id { get; set; }
         [Required]
         [StringLength(100)]
-        public string SubjectName { get; set; }
+        public string Name { get; set; }
 
         //Navigations Properties
-        public List<TeacherSubject> TeacherSubjects { get; set; }
+        public ICollection<TeacherSubject> TeacherSubjects { get; set; }
 
     }
 }

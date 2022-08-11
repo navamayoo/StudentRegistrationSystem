@@ -34,10 +34,10 @@ namespace StudentRegistration
             services.AddControllers();
             services.AddScoped<IStudentRepository, StudentRepository>();
             services.AddScoped<ITeacherRepository, TeacherRepository>();
-            services.AddScoped<IClassroomRepository, ClassroomRepository>();
+            services.AddScoped<IClassRepository, ClassRepository>();
             services.AddScoped<ISubjectRepository, SubjectRepository>();
             services.AddScoped<ITeacherSubjectRepository, TeacherSubjectRepository>();
-            services.AddScoped<ITeacherClassroomRepository, TeacherClassroomRepository>();
+            services.AddScoped<ITeacherClassRepository, TeacherClassRepository>();
 
             services.AddDbContext<AppDbContext>(options =>
            options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
@@ -47,6 +47,9 @@ namespace StudentRegistration
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "StudentRegistration", Version = "v1" });
             });
+
+
+
 
         }
 
