@@ -13,8 +13,8 @@ export default function SelectInput(props) {
         <Field as={Select} id={name} name={name} {...rest}>
           {options &&
             options.map((option, index) => (
-              <MenuItem key={index} value={option.departmentId}>
-                {option.departmentName}
+              <MenuItem key={index} value={option.id}>
+                {option.name}
               </MenuItem>
             ))}
         </Field>

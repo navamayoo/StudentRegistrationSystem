@@ -31,7 +31,7 @@ export default function Classroom() {
 
 
 
-  const getDepartment = async () => {
+  const getClasses = async () => {
     await ClassroomService.getAll()
       .then((response) => {
         setRecords(response);
@@ -58,7 +58,7 @@ export default function Classroom() {
 };
 
   useEffect(() => {
-    getDepartment();
+    getClasses();
   }, [FormSubmitted]);
 
   const handelSetOpenPopup = (val) => {
@@ -104,7 +104,7 @@ export default function Classroom() {
                 ? records.map((record) => (
                     <TableRow key={record.id} sx={{ "& td": { padding: 0 },"&.MuiTableRow-root:hover":{backgroundColor: '#c8e6c9' } }}>
                       {/* <TableCell>{record.id}</TableCell> */}
-                      <TableCell>{record.roomName}</TableCell>
+                      <TableCell>{record.name}</TableCell>
                       <TableCell>
                         <Control.ActionButton
                           size="small"

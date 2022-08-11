@@ -9,8 +9,8 @@ const Selects = (props) => {
       <Select {...rest}>
         {options &&
           options.map((option, index) => (
-            <MenuItem key={index} value={option.departmentId}>
-              {option.departmentName}
+            <MenuItem key={index} value={option.id}>
+              {option.roomName}
             </MenuItem>
           ))}
       </Select>
