@@ -103,11 +103,8 @@ export default function Teacher() {
                 <TableCell>Code</TableCell>
                 <TableCell>First Name</TableCell>
                 <TableCell>Last Name</TableCell>
-                <TableCell>Contact Person</TableCell>
                 <TableCell>Contact No</TableCell>
                 <TableCell>E-mail</TableCell>
-                <TableCell>Date Of Birth</TableCell>
-                <TableCell>Class Room</TableCell>
                 <TableCell>Action</TableCell>
               </TableRow>
             </TableHead>
@@ -126,15 +123,10 @@ export default function Teacher() {
                       <TableCell>{record.id}</TableCell>
                       <TableCell>{record.firstName}</TableCell>
                       <TableCell>{record.lastName}</TableCell>
+                      <TableCell>{record.contactNo}</TableCell>
                       <TableCell>{record.email}</TableCell>
-                      <TableCell>
-                        {
-                          new Date(record.dateOfBirth)
-                            .toISOString()
-                            .split("T")[0]
-                        }{" "}
-                      </TableCell>
-                      <TableCell>{record.departmentName}</TableCell>
+
+                      
                       <TableCell>
                         <Control.ActionButton
                           size="small"

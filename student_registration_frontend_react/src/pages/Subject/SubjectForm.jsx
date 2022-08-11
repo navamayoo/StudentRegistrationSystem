@@ -16,13 +16,13 @@ export default function SubjectForm({
 
 
   const initValues = {
-    subjectName: "",
+    name: "",
   };
 
   const [formValues, setFormValues] = useState(initValues);
 
   const validationSchema = Yup.object({
-    subjectName: Yup.string().required("Required"),
+    name: Yup.string().required("Required"),
   });
 
   const handelSubmit = async (values) => {
@@ -83,7 +83,7 @@ export default function SubjectForm({
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
                     <Control.Input
-                      name="subjectName"
+                      name="name"
                       label="Subject Name"
                     />
                   </Grid>

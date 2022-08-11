@@ -2,10 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Formik, Form } from "formik";
 import Control from "../../components/controls/Control";
 import * as Yup from "yup";
-import { Grid, Box, Stack, TextField } from "@mui/material";
+import { Grid, Box} from "@mui/material";
 import TeacherService from "../../service/TeacherService";
-import AdapterDateFns from "@mui/lab/modern/AdapterDateFns";
-import { LocalizationProvider, DatePicker } from "@mui/lab";
 
 export default function TeacherForm({
   id,
@@ -18,86 +16,52 @@ export default function TeacherForm({
   const initialValues = {
     firstName: "",
     lastName: "",
-    contactPerson:"",
     contactNo:"",
     email: "",
-    dateOfBirth: "",
-    age: 0,
-    salary: "",
     roomId: "",
   };
 
   const [form, setForm] = useState(initialValues);
-  const [classrooms, setClassrooms] = useState([]);
-  const [selectDate, setSelectDate] = useState(null);
-  const [age, setAge] = useState(null);
+
 
   const validationSchema = Yup.object({
     firstName: Yup.string().required("Required"),
     lastName: Yup.string().required("Required"),
     email: Yup.string().email("Invalid Email Format").required("Required!"),
-   // dateOfBirth: Yup.string().required("Required"),
-    roomId: Yup.string().required("Required"),
-    salary: Yup.number()
-      .min(9, "Must be more than 10 characters")
-      .required("Required"),
+
   });
 
   const handelSubmit = async (values) => {
     console.log("its works");
     try {
-    if (validationSchema) {
-    if (id) {
-      await TeacherService.update(id, values).then(
-        (response) => {
-          console.log("update");
-          setPopupClose(false);
-          setCode();
+      if (validationSchema) {
+        if (id) {
+          await TeacherService.update(id, values).then(
+            (response) => {
+              console.log("update");
+              setPopupClose(false);
+              setCode();
+            }
+          );
+        } else {
+          await TeacherService.create(values).then((response) => {
+            console.log("crete");
+            setPopupClose(false);
+          });
         }
-      );
-    } else {
-      await TeacherService.create(values).then((response) => {
-        console.log("crete");
-        setPopupClose(false);
-      });
-    }
-    }
+      }
     setFormSubmitted((prev) => prev + 1);
     } catch (e) {
       alert(e);
     }
   };
 
-  console.log(selectDate);
-  console.log("selectDate", new Date(selectDate).toISOString());
-  console.log("select-Date", selectDate);
-  console.log("selectDate_", initialValues.dateOfBirth);
 
-  const _newDate = new Date(selectDate).getFullYear();
-
-  console.log("_newDate", _newDate);
-
-  //console.log('values',form.values);
-
-  const handleDateChange = () => {
-    const _selectDate = new Date(selectDate).getFullYear();
-    const _today = new Date().getFullYear();
-    const _age = _today - _selectDate;
-    setAge(_age);
-  };
 
   const getTeacherByCode = async (id) => {
     await TeacherService.getByCode(id)
       .then((response) => {
-        const dateOfBirth = new Date(response.dateOfBirth)
-          .toISOString()
-          .split("T")[0];
-        response = JSON.parse(
-          JSON.stringify(response).replace(/:null/gi, ':""')
-        );
-          setAge(response.age);
-          setSelectDate(dateOfBirth);
-        setForm({ ...response, dateOfBirth: dateOfBirth });
+        setForm(response);
         setLoading(true);
       })
       .catch((e) => {
@@ -114,9 +78,8 @@ export default function TeacherForm({
       setLoading(true);
     }
   }, [id]);
-  console.log(form);
 
-  const today = new Date().toISOString().split("T")[0];
+
   return (
     <>
       {loading ? (
@@ -124,9 +87,7 @@ export default function TeacherForm({
           initialValues={form}
           validationSchema={validationSchema}
           onSubmit={async (values, onSubmitProps) => {
-            const dateOfBirth = new Date(selectDate).toISOString().split("T")[0];
-            const data={...values, dateOfBirth,age};
-            await handelSubmit(data);
+            await handelSubmit(values);
             onSubmitProps.resetForm();
           }}
         >
@@ -140,64 +101,20 @@ export default function TeacherForm({
                   <Grid item xs={6}>
                     <Control.Input name="lastName" label="Last Name" />
                   </Grid>
+                  <Grid item xs={6}>
+                    <Control.Input name="contactNo" label="Contact No" />
+                  </Grid>
                   <Grid item xs={12}>
                     <Control.Input name="email" label="Email" />
                   </Grid>
 
-                  <Grid item xs={6}>
-                    {/* <Control.Input
-                      type="date"
-                      label="Date Of Birth"
-                      name="dateOfBirth"
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
-                      inputProps={{
-                        max: today,
-                      }}
-                      
-                    /> */}
 
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                      <Stack spacing={3}>
-                        <DatePicker
-                          disableFuture
-                          label="Responsive"
-                          openTo="year"
-                          inputFormat="dd/MM/yyyy"
-                          views={["year", "month", "day"]}
-                          value={selectDate}
-                          onChange={(newValue) => {
-                            setSelectDate(newValue);
-                            handleDateChange();
-                          }}
-                          InputLabelProps={{
-                            shrink: true,
-                          }}
-                          inputProps={{
-                            max: today,
-                          }}
-                          renderInput={(params) => <TextField {...params} />}
-                        />
-                      </Stack>
-                    </LocalizationProvider>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <h5>Age: {age}</h5>
-                  </Grid>
 
-                  <Grid item xs={6}>
-                    <Control.Input name="salary" label="Salary" />
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Control.SelectInput
-                      label="Classroom"
-                      options={classrooms}
-                      name="roomId"
-                    />
-                  </Grid>
 
-                  <Grid>
+
+                 
+                </Grid>
+                <Grid>
                     <Control.Button
                       type="submit"
                       text="Submit"
@@ -205,7 +122,6 @@ export default function TeacherForm({
                     />
                     <Control.Button type="reset" text="Reset" />
                   </Grid>
-                </Grid>
               </Box>
             </Form>
           )}

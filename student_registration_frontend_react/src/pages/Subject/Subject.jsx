@@ -104,7 +104,7 @@ export default function Subject() {
                 ? records.map((record) => (
                     <TableRow key={record.id} sx={{ "& td": { padding: 0 },"&.MuiTableRow-root:hover":{backgroundColor: '#c8e6c9' } }}>
                       {/* <TableCell>{record.id}</TableCell> */}
-                      <TableCell>{record.subjectName}</TableCell>
+                      <TableCell>{record.name}</TableCell>
                       <TableCell>
                         <Control.ActionButton
                           size="small"

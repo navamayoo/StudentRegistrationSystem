@@ -8,7 +8,7 @@ import SensorOccupiedIcon from '@mui/icons-material/SensorOccupied';
 
 //Components
 import Student from "../pages/Student/Student";
-import Classroom from "../pages/Classroom/Classroom";
+import Classroom from "../pages/Class/Classroom";
 import Subject from "../pages/Subject/Subject";
 import Teacher from "../pages/Teacher/Teacher";
 

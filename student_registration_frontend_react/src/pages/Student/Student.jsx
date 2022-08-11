@@ -126,6 +126,8 @@ export default function Student() {
                       <TableCell>{record.id}</TableCell>
                       <TableCell>{record.firstName}</TableCell>
                       <TableCell>{record.lastName}</TableCell>
+                      <TableCell>{record.contactPerson}</TableCell>
+                      <TableCell>{record.contactNo}</TableCell>
                       <TableCell>{record.email}</TableCell>
                       <TableCell>
                         {
@@ -134,7 +136,7 @@ export default function Student() {
                             .split("T")[0]
                         }{" "}
                       </TableCell>
-                      <TableCell>{record.departmentName}</TableCell>
+                      <TableCell>{record.className}</TableCell>
                       <TableCell>
                         <Control.ActionButton
                           size="small"

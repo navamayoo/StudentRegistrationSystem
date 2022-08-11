@@ -2,12 +2,19 @@ import React, { useState, useEffect } from "react";
 import { Formik, Form } from "formik";
 import Control from "../../components/controls/Control";
 import * as Yup from "yup";
-import { Grid, Box, Stack, TextField } from "@mui/material";
+import { Grid, Box, TextField } from "@mui/material";
 import StudentService from "../../service/StudentService";
 import ClassroomService from "../../service/ClassroomService";
+//import { Grid, Box, Stack, TextField } from "@mui/material";
 // import { AdapterDateFns } from "@mui/lab/AdapterDateFns";
-import AdapterDateFns from "@mui/lab/modern/AdapterDateFns";
-import { LocalizationProvider, DatePicker } from "@mui/lab";
+// import AdapterDateFns from "@mui/lab/modern/AdapterDateFns";
+// import { LocalizationProvider, DatePicker } from "@mui/lab";
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+
+
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+//import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 
 export default function StudentForm({
   id,
@@ -25,8 +32,7 @@ export default function StudentForm({
     email: "",
     dateOfBirth: "",
     age: 0,
-    salary: "",
-    roomId: "",
+    ClassId: "",
   };
 
   const [form, setForm] = useState(initialValues);
@@ -38,11 +44,11 @@ export default function StudentForm({
     firstName: Yup.string().required("Required"),
     lastName: Yup.string().required("Required"),
     email: Yup.string().email("Invalid Email Format").required("Required!"),
-   // dateOfBirth: Yup.string().required("Required"),
-    roomId: Yup.string().required("Required"),
-    salary: Yup.number()
+    dateOfBirth: Yup.string().required("Required"),
+    ClassId: Yup.string().required("Required"),
+    contactNo: Yup.number()
       .min(9, "Must be more than 10 characters")
-      .required("Required"),
+
   });
 
   const handelSubmit = async (values) => {
@@ -70,14 +76,14 @@ export default function StudentForm({
     }
   };
 
-  console.log(selectDate);
-  console.log("selectDate", new Date(selectDate).toISOString());
-  console.log("select-Date", selectDate);
-  console.log("selectDate_", initialValues.dateOfBirth);
+  // console.log(selectDate);
+  // console.log("selectDate", new Date(selectDate).toISOString());
+  // console.log("select-Date", selectDate);
+  // console.log("selectDate_", initialValues.dateOfBirth);
 
-  const _newDate = new Date(selectDate).getFullYear();
+  // const _newDate = new Date(selectDate).getFullYear();
 
-  console.log("_newDate", _newDate);
+  // console.log("_newDate", _newDate);
 
   //console.log('values',form.values);
 
@@ -117,6 +123,7 @@ export default function StudentForm({
       });
   };
 
+
   useEffect(() => {
     getClassroom();
     if (id != null) {
@@ -125,6 +132,7 @@ export default function StudentForm({
       setLoading(true);
     }
   }, [id]);
+
   console.log(form);
 
   const today = new Date().toISOString().split("T")[0];
@@ -138,6 +146,7 @@ export default function StudentForm({
             const dateOfBirth = new Date(selectDate).toISOString().split("T")[0];
             const data={...values, dateOfBirth,age};
             await handelSubmit(data);
+           
             onSubmitProps.resetForm();
           }}
         >
@@ -154,9 +163,16 @@ export default function StudentForm({
                   <Grid item xs={12}>
                     <Control.Input name="email" label="Email" />
                   </Grid>
+                  <Grid item xs={6}>
+                    <Control.Input name="contactPerson" label="Contact Person" />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Control.Input name="contactNo" label="Contact No" />
+                  </Grid>
+
 
                   <Grid item xs={6}>
-                    {/* <Control.Input
+                    <Control.Input
                       type="date"
                       label="Date Of Birth"
                       name="dateOfBirth"
@@ -166,14 +182,14 @@ export default function StudentForm({
                       inputProps={{
                         max: today,
                       }}
-                      
-                    /> */}
+                    />
 
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                      <Stack spacing={3}>
+                    {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
+                      <Stack spacing={6}>
                         <DatePicker
                           disableFuture
-                          label="Responsive"
+                          label="Date Of Birth"
+                      name="dateOfBirth"
                           openTo="year"
                           inputFormat="dd/MM/yyyy"
                           views={["year", "month", "day"]}
@@ -191,24 +207,47 @@ export default function StudentForm({
                           renderInput={(params) => <TextField {...params} />}
                         />
                       </Stack>
-                    </LocalizationProvider>
+                    </LocalizationProvider> */}
+
+{/* <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <DateTimePicker
+        renderInput={(props) => <TextField {...props} />}
+        label="Date Of Birth"
+        name="dateOfBirth"
+        openTo="year"
+        inputFormat="dd/MM/yyyy"
+        value={selectDate}
+        onChange={(newValue) => {
+          setSelectDate(newValue);
+          handleDateChange();
+        }}
+        InputLabelProps={{
+          shrink: true,
+        }}
+        inputProps={{
+          max: today,
+        }}
+      />
+    </LocalizationProvider> */}
+
+
                   </Grid>
                   <Grid item xs={6}>
                     <h5>Age: {age}</h5>
                   </Grid>
 
-                  <Grid item xs={6}>
-                    <Control.Input name="salary" label="Salary" />
-                  </Grid>
+
                   <Grid item xs={6}>
                     <Control.SelectInput
                       label="Classroom"
                       options={classrooms}
-                      name="roomId"
+                      name="ClassId"
                     />
                   </Grid>
 
-                  <Grid>
+
+                </Grid>
+                <Grid>
                     <Control.Button
                       type="submit"
                       text="Submit"
@@ -216,7 +255,6 @@ export default function StudentForm({
                     />
                     <Control.Button type="reset" text="Reset" />
                   </Grid>
-                </Grid>
               </Box>
             </Form>
           )}

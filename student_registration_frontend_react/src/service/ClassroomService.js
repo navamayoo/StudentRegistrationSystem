@@ -6,7 +6,7 @@ class ClassroomService{
     create = async(classroom)=>{
       await axios({
           method:"Post",
-          url:`${API_URL}Classroom`,
+          url:`${API_URL}Class`,
           data:classroom
       }).catch((e)=>{
           const {message}= e.response.data;
@@ -19,7 +19,7 @@ class ClassroomService{
         try{
             const response = await axios({
                 method:"GET",
-                url:`${API_URL}Classroom`
+                url:`${API_URL}Class`
             });
             return response.data
         }catch(e){
@@ -31,7 +31,7 @@ class ClassroomService{
         try{
             const response = await axios({
                 method: "GET",
-                url:`${API_URL}Classroom/${code}`
+                url:`${API_URL}Class/${code}`
             });
             return response.data
         }catch(e){
@@ -42,7 +42,7 @@ class ClassroomService{
     update = async(code,classroom)=>{
         await axios({
             method:"PUT",
-            url:`${API_URL}Classroom/${code}`,
+            url:`${API_URL}Class/${code}`,
             data:classroom,
         }).catch((e)=>{
             const{message} = e.response.data;
@@ -54,7 +54,7 @@ class ClassroomService{
         try{
             const response = await axios({
                 method: "DELETE",
-                url:`${API_URL}Classroom/${code}`
+                url:`${API_URL}Class/${code}`
             });
             return response.data
         }catch(e){
