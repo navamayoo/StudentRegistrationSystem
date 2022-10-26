@@ -4,13 +4,14 @@ import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import BusinessIcon from '@mui/icons-material/Business';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import SensorOccupiedIcon from '@mui/icons-material/SensorOccupied';
-//import MenuBookIcon from "@mui/icons-material/MenuBook";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
 
 //Components
 import Student from "../pages/Student/Student";
 import Classroom from "../pages/Class/Classroom";
 import Subject from "../pages/Subject/Subject";
 import Teacher from "../pages/Teacher/Teacher";
+import AllocateSubject from "../pages/AllocateSubject/AllocateSubject";
 
 //import CourseStudent from "../../pages/Admin/CourseStudents/CourseStudent";
 
@@ -39,10 +40,10 @@ export const routes = [
     label: "Classroom",
     icon: <BusinessIcon />,
   },
-//   {
-//     path: "/course-student",
-//     component: <CourseStudent />,
-//     label: "Course-Student",
-//     icon: <MenuBookIcon />,
-//   },
+  {
+    path: "/allocate-subject",
+    component: <AllocateSubject />,
+    label: "Allocate-Subject",
+    icon: <MenuBookIcon />,
+  },
 ];

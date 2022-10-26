@@ -4,7 +4,7 @@ import RadioButton from "./RadioButton";
 import SelectInput from "./SelectInput";
 import Button from "./Button";
 import ActionButton from "./ActionButton";
-import Selects from "./Selects";
+import SelectBox from "./Selects";
 import InputDatePic from "./InputDatePic";
 
 
@@ -16,7 +16,7 @@ CheckBoxGroup,
 SelectInput,
 Button,
 ActionButton,
-Selects,
+SelectBox,
 InputDatePic,
 }
 export default Control;

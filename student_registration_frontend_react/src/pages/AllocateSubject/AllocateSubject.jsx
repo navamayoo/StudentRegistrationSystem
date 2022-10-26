@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from "react";
 import PageHeader from "../../components/layout/PageHeader";
-import ClassroomForm from "./ClassroomForm";
+import AllocateSubjectForm from "./AllocateSubjectForm";
 import BusinessIcon from '@mui/icons-material/Business';
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -130,7 +130,7 @@ function AllocateSubject() {
           setOpenPopup={setOpenPopup}
         >
           {openPopup && (
-            <ClassroomForm
+            <AllocateSubjectForm
             id={selectedCode}
             setCode={() => setSelectedCode(null)}
               loading={loading}

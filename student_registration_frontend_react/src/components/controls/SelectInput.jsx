@@ -18,6 +18,7 @@ export default function SelectInput(props) {
               </MenuItem>
             ))}
         </Field>
+
         {/* <Field
           as={Select}
           {...rest}
@@ -40,6 +41,7 @@ export default function SelectInput(props) {
           </Field> 
         
         <FormHelperText>Required</FormHelperText> */}
+        
       </FormControl>
 
       <ErrorMessage name={name} component={Error} />
