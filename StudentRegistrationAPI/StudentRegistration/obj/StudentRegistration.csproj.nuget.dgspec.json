@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Practical_Test\\StudentRegistrationSystem\\StudentRegistrationAPI\\StudentRegistration\\StudentRegistration.csproj": {}
+    "E:\\Practical_Test\\React + .net\\StudentRegistrationSystem\\StudentRegistrationAPI\\StudentRegistration\\StudentRegistration.csproj": {}
   },
   "projects": {
-    "E:\\Practical_Test\\StudentRegistrationSystem\\StudentRegistrationAPI\\StudentRegistration\\StudentRegistration.csproj": {
+    "E:\\Practical_Test\\React + .net\\StudentRegistrationSystem\\StudentRegistrationAPI\\StudentRegistration\\StudentRegistration.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Practical_Test\\StudentRegistrationSystem\\StudentRegistrationAPI\\StudentRegistration\\StudentRegistration.csproj",
+        "projectUniqueName": "E:\\Practical_Test\\React + .net\\StudentRegistrationSystem\\StudentRegistrationAPI\\StudentRegistration\\StudentRegistration.csproj",
         "projectName": "StudentRegistration",
-        "projectPath": "E:\\Practical_Test\\StudentRegistrationSystem\\StudentRegistrationAPI\\StudentRegistration\\StudentRegistration.csproj",
+        "projectPath": "E:\\Practical_Test\\React + .net\\StudentRegistrationSystem\\StudentRegistrationAPI\\StudentRegistration\\StudentRegistration.csproj",
         "packagesPath": "C:\\Users\\Acer\\.nuget\\packages\\",
-        "outputPath": "E:\\Practical_Test\\StudentRegistrationSystem\\StudentRegistrationAPI\\StudentRegistration\\obj\\",
+        "outputPath": "E:\\Practical_Test\\React + .net\\StudentRegistrationSystem\\StudentRegistrationAPI\\StudentRegistration\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -43,6 +43,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[3.1.0, )"

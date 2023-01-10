@@ -9,7 +9,7 @@ import { Paper, Toolbar } from "@mui/material";
 import StudentService from "../../service/StudentService";
 //import { makeStyles } from "@mui/styles";
 import DialogBox from "../../components/controls/Dialog/DialogBox";
-import MuiTableView from "../../components/layout/MuiTableView";
+import TableView from "../../components/layout/TableView";
 
 // const useStyles = makeStyles({
 //   root: {
@@ -100,13 +100,13 @@ export default function Student() {
     {
       id: (row) => row["className"],
       name: "className",
-      label: "Class Room",
+      label: "DateOfBirth",
     },
-    // {
-    //   id: (row) => row["action"],
-    //   name: "action",
-    //   label: "Action",
-    // },
+    {
+      id: (row) => row["action"],
+      name: "action",
+      label: "Action",
+    },
   ];
 
   return (
@@ -130,14 +130,13 @@ export default function Student() {
             startIcon={<AddIcon />}
           />
         </Toolbar>
-        <MuiTableView
+        <TableView
           headCells={headCells}
           tableData={records}
           setOpenPopup={setOpenPopup}
           setSelectedCode={setSelectedCode}
           setLoading={setLoading}
           setOpen={setOpen}
-          tableName={"Student List"}
         />
       </Paper>
       <Popup

@@ -3,6 +3,8 @@ using StudentRegistration.Interface;
 using StudentRegistration.Models;
 using System;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace StudentRegistration.Repository
 {
@@ -54,12 +56,17 @@ namespace StudentRegistration.Repository
 
         public IEnumerable<Student> GetAllStudents()
         {
-            return _dbcontext.Students;
+            var students = _dbcontext.Students.Include(c => c.Class).ToList();
+            return students;
         }
 
         public Student GetStudentById(int id)
         {
-            return _dbcontext.Students.Find(id);
+          var  student = _dbcontext.Students
+                .Where(c => c.Id == id)
+                .Include(c => c.Class).FirstOrDefault();
+
+            return student;
         }
 
         public Student UpdateStudent(Student student, int id)

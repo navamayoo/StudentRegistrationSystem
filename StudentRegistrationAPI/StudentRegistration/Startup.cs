@@ -47,7 +47,8 @@ namespace StudentRegistration
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "StudentRegistration", Version = "v1" });
             });
-
+            services.AddControllers().AddNewtonsoftJson(options =>
+            options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore );
 
 
 

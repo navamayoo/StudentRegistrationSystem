@@ -9,11 +9,10 @@ import ClassroomService from "../../service/ClassroomService";
 // import { AdapterDateFns } from "@mui/lab/AdapterDateFns";
 // import AdapterDateFns from "@mui/lab/modern/AdapterDateFns";
 // import { LocalizationProvider, DatePicker } from "@mui/lab";
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 
-
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 //import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 
 export default function StudentForm({
@@ -27,8 +26,8 @@ export default function StudentForm({
   const initialValues = {
     firstName: "",
     lastName: "",
-    contactPerson:"",
-    contactNo:"",
+    contactPerson: "",
+    contactNo: "",
     email: "",
     dateOfBirth: "",
     age: 0,
@@ -46,31 +45,27 @@ export default function StudentForm({
     email: Yup.string().email("Invalid Email Format").required("Required!"),
     dateOfBirth: Yup.string().required("Required"),
     ClassId: Yup.string().required("Required"),
-    contactNo: Yup.number()
-      .min(9, "Must be more than 10 characters")
-
+    contactNo: Yup.number().min(9, "Must be more than 10 characters"),
   });
 
   const handelSubmit = async (values) => {
     console.log("its works");
     try {
-    if (validationSchema) {
-    if (id) {
-      await StudentService.update(id, values).then(
-        (response) => {
-          console.log("update");
-          setPopupClose(false);
-          setCode();
+      if (validationSchema) {
+        if (id) {
+          await StudentService.update(id, values).then((response) => {
+            console.log("update");
+            setPopupClose(false);
+            setCode();
+          });
+        } else {
+          await StudentService.create(values).then((response) => {
+            console.log("crete");
+            setPopupClose(false);
+          });
         }
-      );
-    } else {
-      await StudentService.create(values).then((response) => {
-        console.log("crete");
-        setPopupClose(false);
-      });
-    }
-    }
-    setFormSubmitted((prev) => prev + 1);
+      }
+      setFormSubmitted((prev) => prev + 1);
     } catch (e) {
       alert(e);
     }
@@ -103,9 +98,15 @@ export default function StudentForm({
         response = JSON.parse(
           JSON.stringify(response).replace(/:null/gi, ':""')
         );
-          setAge(response.age);
-          setSelectDate(dateOfBirth);
+        console.log(response);
+ console.log(response.class);
+        setClassrooms(response.class);
+
+        setAge(response.age);
+        setSelectDate(dateOfBirth);
+                console.log("classrooms", classrooms);
         setForm({ ...response, dateOfBirth: dateOfBirth });
+
         setLoading(true);
       })
       .catch((e) => {
@@ -122,7 +123,6 @@ export default function StudentForm({
         console.log(e);
       });
   };
-
 
   useEffect(() => {
     getClassroom();
@@ -143,13 +143,14 @@ export default function StudentForm({
           initialValues={form}
           validationSchema={validationSchema}
           onSubmit={async (values, onSubmitProps) => {
-            const dateOfBirth = new Date(selectDate).toISOString().split("T")[0];
-            const data={...values, dateOfBirth,age};
+            const dateOfBirth = new Date(selectDate)
+              .toISOString()
+              .split("T")[0];
+            const data = { ...values, dateOfBirth, age };
             await handelSubmit(data);
-           
+
             onSubmitProps.resetForm();
-          }}
-        >
+          }}>
           {() => (
             <Form>
               <Box sx={{ flexGrow: 1 }} spacing={2}>
@@ -164,12 +165,14 @@ export default function StudentForm({
                     <Control.Input name="email" label="Email" />
                   </Grid>
                   <Grid item xs={6}>
-                    <Control.Input name="contactPerson" label="Contact Person" />
+                    <Control.Input
+                      name="contactPerson"
+                      label="Contact Person"
+                    />
                   </Grid>
                   <Grid item xs={6}>
                     <Control.Input name="contactNo" label="Contact No" />
                   </Grid>
-
 
                   <Grid item xs={6}>
                     <Control.Input
@@ -183,59 +186,10 @@ export default function StudentForm({
                         max: today,
                       }}
                     />
-
-                    {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
-                      <Stack spacing={6}>
-                        <DatePicker
-                          disableFuture
-                          label="Date Of Birth"
-                      name="dateOfBirth"
-                          openTo="year"
-                          inputFormat="dd/MM/yyyy"
-                          views={["year", "month", "day"]}
-                          value={selectDate}
-                          onChange={(newValue) => {
-                            setSelectDate(newValue);
-                            handleDateChange();
-                          }}
-                          InputLabelProps={{
-                            shrink: true,
-                          }}
-                          inputProps={{
-                            max: today,
-                          }}
-                          renderInput={(params) => <TextField {...params} />}
-                        />
-                      </Stack>
-                    </LocalizationProvider> */}
-
-{/* <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <DateTimePicker
-        renderInput={(props) => <TextField {...props} />}
-        label="Date Of Birth"
-        name="dateOfBirth"
-        openTo="year"
-        inputFormat="dd/MM/yyyy"
-        value={selectDate}
-        onChange={(newValue) => {
-          setSelectDate(newValue);
-          handleDateChange();
-        }}
-        InputLabelProps={{
-          shrink: true,
-        }}
-        inputProps={{
-          max: today,
-        }}
-      />
-    </LocalizationProvider> */}
-
-
                   </Grid>
                   <Grid item xs={6}>
                     <h5>Age: {age}</h5>
                   </Grid>
-
 
                   <Grid item xs={6}>
                     <Control.SelectInput
@@ -244,17 +198,11 @@ export default function StudentForm({
                       name="ClassId"
                     />
                   </Grid>
-
-
                 </Grid>
                 <Grid>
-                    <Control.Button
-                      type="submit"
-                      text="Submit"
-                      color="success"
-                    />
-                    <Control.Button type="reset" text="Reset" />
-                  </Grid>
+                  <Control.Button type="submit" text="Submit" color="success" />
+                  <Control.Button type="reset" text="Reset" />
+                </Grid>
               </Box>
             </Form>
           )}
